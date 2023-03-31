@@ -70,16 +70,15 @@ class FollowSerializer(serializers.ModelSerializer):
         validators = [
             UniqueTogetherValidator(
                 queryset=Follow.objects.all(),
-                fields=('user', 'following'),
-                message='Нельзя подписаться на самого себя!'
+                fields=('user', 'following')
             )
         ]
 
     def validate(self, data):
         following = data['following']
         user = self.context['request'].user
-        user_list = User.objects.all()
-        if following not in user_list:
+        follow_user = User.objects.filter(username=following).exists()
+        if not follow_user:
             raise serializers.ValidationError(
                 f'Объект с username={following} не существует.'
             )
