@@ -17,6 +17,13 @@ class CreateUpdateDeleteViewSet(mixins.CreateModelMixin,
     pass
 
 
+class ListCreateViewSet(mixins.ListModelMixin,
+                        mixins.CreateModelMixin,
+                        viewsets.GenericViewSet):
+
+    pass
+
+
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -58,7 +65,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return super(CommentViewSet, self).perform_update(serializer)
 
 
-class FollowViewSet(viewsets.ModelViewSet):
+class FollowViewSet(ListCreateViewSet):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated, FollowerOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
