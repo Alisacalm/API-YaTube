@@ -2,10 +2,10 @@
 ### Описание
 API для проекта [YaTube](https://github.com/Alisacalm/Yatube/tree/master).
 ### Технологии
-###### Python 3.9
-###### Django 3.2.16
-###### Django REST Framework
-###### PyJWT 2.1.0
+##### Python 3.9
+##### Django 3.2.16
+##### Django REST Framework
+##### PyJWT 2.1.0
 ### Запуск проекта в dev-режиме:
 Клонировать репозиторий и перейти в него в командной строке:
 ```
